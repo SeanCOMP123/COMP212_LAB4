@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace COMP212_LAB4.ViewModels
 {
-    class FoodViewModel : INotifyPropertyChanged
+    class FoodViewModel 
     {
         private ObservableCollection<Food> AppetizerList;
         private ObservableCollection<Food> MainCourseList;
@@ -58,7 +58,7 @@ namespace COMP212_LAB4.ViewModels
         public ObservableCollection<Food> DataMenu
         {
             get { return AllList; }
-            set { AllList = value; OnPropertyChanged("Quantity");}
+            set { AllList = value;}
         }
         public ObservableCollection<Food> Appetizers
         {
@@ -81,38 +81,5 @@ namespace COMP212_LAB4.ViewModels
             set { DessertList = value; }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        //private ICommand mUpdater;
-        //public ICommand Command 
-        //{
-        //    get {
-        //        if (mUpdater == null)
-        //            mUpdater = new Updater();
-        //        return mUpdater;
-        //    }
-        //    set {
-        //        mUpdater = value;
-        //    }
-        //}
-        //private class Updater : ICommand 
-        //{
-
-        //    public bool CanExecute(object parameter) {
-        //        return true;
-        //    }
-        //    public event EventHandler CanExecuteChanged;
-        //    public void Execute(object parameter)
-        //    {
-
-        //    }
-
-        //}
     }
 }

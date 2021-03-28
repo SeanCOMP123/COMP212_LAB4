@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COMP212_LAB4"
         mc:Ignorable="d"
-        Title="Restaurant Bill Calculator" Height="450" Width="800">
+        Title="Restaurant Bill Calculator" Height="450" Width="800" Background="LightSteelBlue">
     <Grid>
         <ComboBox x:Name="appetizer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="202" Margin="132,16,0,0" Height="26" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
@@ -14,7 +14,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <DataGrid x:Name="menuData" SelectionUnit="CellOrRowHeader" LoadingRow="DataGrid_LoadingRow" RowHeaderWidth="30" CanUserAddRows="False" HorizontalAlignment="Left" Height="269" Margin="430,16,0,0" VerticalAlignment="Top" Width="328" AutoGenerateColumns="False" CellEditEnding="menuData_CellEditEnding">
+        <DataGrid x:Name="menuData" SelectionUnit="CellOrRowHeader" HeadersVisibility="Column" CanUserAddRows="False" HorizontalAlignment="Left" Height="269" Margin="375,16,0,0" VerticalAlignment="Top" Width="383" AutoGenerateColumns="False" CellEditEnding="menuData_CellEditEnding">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <EventSetter Event="DataGridRowHeader.Click" Handler="deletedRow">
@@ -22,15 +22,41 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Remove" Width="50" Background="red" Foreground="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Menu Item" Width="*" Binding="{Binding Item }" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Price" Width="70"  Binding="{Binding Price, StringFormat=C}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Quantity" Width="60"  Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Total Price" Width="70"  Binding="{Binding TotalPrice, StringFormat=C, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                <DataGridTextColumn Header="Total Price" Width="70"  Binding="{Binding TotalPrice, StringFormat=C}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-
             </DataGrid.Columns>
         </DataGrid>
         <ComboBox x:Name="mainCourse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="202" Margin="132,86,0,0" Height="26"  SelectionChanged="mainCourse_SelectionChanged">

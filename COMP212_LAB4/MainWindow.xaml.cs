@@ -173,7 +173,7 @@ namespace COMP212_LAB4
         {
     
             double tax = (double.Parse(subTextBox.Text.Replace("$","")))*0.13;
-            taxTextBox.Text = tax.ToString("F");
+            taxTextBox.Text = tax.ToString("C", CultureInfo.CurrentCulture);
 
         }
         private void totalCalcualtor() 
@@ -204,16 +204,9 @@ namespace COMP212_LAB4
         }
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            // for .NET Core you need to add UseShellExecute = true
-            // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
-        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-            e.Row.Header = (e.Row.GetIndex()).ToString();
-        }
-
         private void menuData_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             addSubTotalCalculator();
